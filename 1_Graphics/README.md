@@ -6,6 +6,8 @@ A demo that draws some sprites on the screen and manipulates them via script:
 * Color modulation
 * Sprite sheet animation
 
+![Screenshot](screenshot.gif "Screenshot")
+
 Graphics by Disthron ([OpenGameArt.org](https://opengameart.org/content/mr-necromancer-man-animated))
 
 ## References

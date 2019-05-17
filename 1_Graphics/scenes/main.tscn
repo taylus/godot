@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://gfx/necro_guy.png" type="Texture" id=1]
 [ext_resource path="res://scripts/spin.gd" type="Script" id=2]
 [ext_resource path="res://scripts/scale.gd" type="Script" id=3]
 [ext_resource path="res://scripts/move.gd" type="Script" id=4]
 [ext_resource path="res://scripts/color_change.gd" type="Script" id=5]
+[ext_resource path="res://gfx/necro_guy_walk_04.png" type="Texture" id=6]
+[ext_resource path="res://gfx/necro_guy_walk_03.png" type="Texture" id=7]
+[ext_resource path="res://gfx/necro_guy_walk_02.png" type="Texture" id=8]
+[ext_resource path="res://gfx/necro_guy_walk_01.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
 
 [node name="World" type="Node"]
 
@@ -31,4 +43,12 @@ position = Vector2( 555, 430 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 1 )
 script = ExtResource( 5 )
+
+[node name="animated_sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 874.149, 417.431 )
+scale = Vector2( 6, 6 )
+frames = SubResource( 1 )
+animation = "run"
+frame = 2
+playing = true
 
