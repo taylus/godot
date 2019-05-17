@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gfx/gamepad.png" type="Texture" id=1]
+[ext_resource path="res://scripts/input_gamepad.gd" type="Script" id=2]
+[ext_resource path="res://gfx/arrow.png" type="Texture" id=3]
+
+[node name="World" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GamePad" type="TextureRect" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -260.5
+margin_top = -171.0
+margin_right = 260.5
+margin_bottom = 171.0
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="LeftAnalogArrow" type="Sprite" parent="CanvasLayer/GamePad"]
+visible = false
+modulate = Color( 1, 1, 1, 0.7 )
+position = Vector2( 191.5, 228 )
+texture = ExtResource( 3 )
+offset = Vector2( 64, 0 )
+
+[node name="RightAnalogArrow" type="Sprite" parent="CanvasLayer/GamePad"]
+visible = false
+modulate = Color( 1, 1, 1, 0.7 )
+position = Vector2( 333.5, 228 )
+texture = ExtResource( 3 )
+offset = Vector2( 64, 0 )
+
