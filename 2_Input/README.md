@@ -1,7 +1,7 @@
 # Working with input demo
 A demo that handles keyboard, mouse, and gamepad input using both polling and event-driven techniques.
 
-![Screenshot](screenshot.gif "Screenshot")
+![Screenshot](screenshot.png "Screenshot")
 
 Gamepad is the [Logitech F710](https://www.logitechg.com/en-us/products/gamepads/f710-wireless-gamepad.html)
 
