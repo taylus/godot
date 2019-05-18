@@ -1,20 +1,26 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://gfx/icon.png" type="Texture" id=1]
 [ext_resource path="res://scripts/input_events.gd" type="Script" id=2]
 [ext_resource path="res://scripts/input_polling.gd" type="Script" id=3]
+[ext_resource path="res://scripts/input_map.gd" type="Script" id=4]
 
 [node name="World" type="Node"]
 
 [node name="EventControlledSprite" type="Sprite" parent="."]
-position = Vector2( 415, 208 )
+position = Vector2( 445.693, 142.93 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="PollingControlledSprite" type="Sprite" parent="."]
-position = Vector2( 598, 371 )
+position = Vector2( 723.229, 382.05 )
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
+
+[node name="InputMapControlledSprite" type="Sprite" parent="."]
+position = Vector2( 282.471, 398.01 )
+texture = ExtResource( 1 )
+script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
