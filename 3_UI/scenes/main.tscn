@@ -1,0 +1,164 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://custom_theme.tres" type="Theme" id=2]
+[ext_resource path="res://scripts/button.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0901961, 0.4, 0.0823529, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ButtonGroup" id=2]
+
+[node name="Root" type="Node"]
+
+[node name="Tabs" type="PanelContainer" parent="."]
+margin_left = 523.0
+margin_top = 318.0
+margin_right = 964.0
+margin_bottom = 549.0
+
+[node name="TabContainer" type="TabContainer" parent="Tabs"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 434.0
+margin_bottom = 224.0
+tab_align = 0
+
+[node name="Tab #1" type="PanelContainer" parent="Tabs/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tabs/TabContainer/Tab #1"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 412.0
+margin_bottom = 174.0
+text = "Some content here"
+
+[node name="Tab #2" type="PanelContainer" parent="Tabs/TabContainer"]
+editor/display_folded = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Tabs/TabContainer/Tab #2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 412.0
+margin_bottom = 174.0
+text = "Different content here"
+
+[node name="Tab #3" type="PanelContainer" parent="Tabs/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TextureRect" type="TextureRect" parent="Tabs/TabContainer/Tab #3"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 412.0
+margin_bottom = 174.0
+texture = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 270.0
+margin_top = 150.0
+margin_right = 413.0
+margin_bottom = 192.0
+theme = ExtResource( 2 )
+custom_styles/hover = SubResource( 1 )
+text = "Click me"
+script = ExtResource( 3 )
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="Button"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -35.0
+margin_right = 100.0
+margin_bottom = 35.0
+window_title = "Confirmation dialog"
+dialog_text = "Do the thing?"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+margin_left = 55.0
+margin_top = 48.0
+margin_right = 186.0
+margin_bottom = 72.0
+text = "check me"
+
+[node name="RadioButtonList" type="Node2D" parent="."]
+position = Vector2( 97, 290 )
+
+[node name="RadioButton1" type="CheckBox" parent="RadioButtonList"]
+margin_right = 131.0
+margin_bottom = 24.0
+group = SubResource( 2 )
+text = "select me"
+
+[node name="RadioButton2" type="CheckBox" parent="RadioButtonList"]
+margin_top = 22.0
+margin_right = 131.0
+margin_bottom = 46.0
+group = SubResource( 2 )
+text = "or me"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+margin_left = 284.0
+margin_top = 362.0
+margin_right = 415.0
+margin_bottom = 382.0
+text = "option #1"
+items = [ "option #1", null, false, 1, null, "option #2", null, false, 2, null, "option #3", null, true, -1, null ]
+selected = 0
+
+[node name="Toggles" type="PanelContainer" parent="."]
+margin_left = 561.0
+margin_top = 79.0
+margin_right = 843.0
+margin_bottom = 185.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Toggles"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 275.0
+margin_bottom = 99.0
+
+[node name="CheckButton" type="CheckButton" parent="Toggles/VBoxContainer"]
+margin_right = 268.0
+margin_bottom = 40.0
+text = "A toggle thing"
+
+[node name="HSeparator" type="HSeparator" parent="Toggles/VBoxContainer"]
+margin_top = 44.0
+margin_right = 268.0
+margin_bottom = 48.0
+
+[node name="CheckButton2" type="CheckButton" parent="Toggles/VBoxContainer"]
+margin_top = 52.0
+margin_right = 268.0
+margin_bottom = 92.0
+text = "Another toggle thing"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
+[connection signal="confirmed" from="Button/ConfirmationDialog" to="Button" method="_on_ConfirmationDialog_confirmed"]
