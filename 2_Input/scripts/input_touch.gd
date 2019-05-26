@@ -4,7 +4,7 @@ extends Node
 # touch is also interpreted as mouse clicks/movements, but only 
 # the first touch is recognized, and only as BUTTON_LEFT
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch: _touch_input(event)
 	elif event is InputEventScreenDrag: _drag_input(event)
 	elif event is InputEventMouseButton: _mouse_button(event)
@@ -46,7 +46,14 @@ func _drag(position: Vector2, index: int = 0) -> void:
 		touch_circle.move(position)
 
 func _get_touch_display(index: int = 0) -> Touch2D:
-	if index >= get_child_count():
+	var touch_displays = get_node_or_null("TouchDisplays")
+	if touch_displays == null || index >= touch_displays.get_child_count():
 		push_warning("No touch display found for index #%d" % index)
 		return null
-	return get_children()[index]
+	return touch_displays.get_children()[index]
+
+func _on_ClearInputsButton_pressed():
+	var touch_displays = get_node_or_null("TouchDisplays")
+	if touch_displays == null: return
+	for touch_display in get_node("TouchDisplays").get_children():
+		touch_display.hide()

@@ -6,22 +6,34 @@
 [node name="World" type="Node"]
 script = ExtResource( 1 )
 
-[node name="TouchDisplay #0" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplays" type="Node2D" parent="."]
 
-[node name="TouchDisplay #1" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplay #0" parent="TouchDisplays" instance=ExtResource( 2 )]
 
-[node name="TouchDisplay #2" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplay #1" parent="TouchDisplays" instance=ExtResource( 2 )]
 
-[node name="TouchDisplay #3" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplay #2" parent="TouchDisplays" instance=ExtResource( 2 )]
 
-[node name="TouchDisplay #4" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplay #3" parent="TouchDisplays" instance=ExtResource( 2 )]
 
-[node name="TouchDisplay #5" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplay #4" parent="TouchDisplays" instance=ExtResource( 2 )]
 
-[node name="TouchDisplay #6" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplay #5" parent="TouchDisplays" instance=ExtResource( 2 )]
 
-[node name="TouchDisplay #7" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplay #6" parent="TouchDisplays" instance=ExtResource( 2 )]
 
-[node name="TouchDisplay #8" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplay #7" parent="TouchDisplays" instance=ExtResource( 2 )]
 
-[node name="TouchDisplay #9" parent="." instance=ExtResource( 2 )]
+[node name="TouchDisplay #8" parent="TouchDisplays" instance=ExtResource( 2 )]
+
+[node name="TouchDisplay #9" parent="TouchDisplays" instance=ExtResource( 2 )]
+
+[node name="ClearInputsButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -60.0
+text = "Clear inputs"
+[connection signal="pressed" from="ClearInputsButton" to="." method="_on_ClearInputsButton_pressed"]
