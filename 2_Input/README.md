@@ -1,9 +1,14 @@
 # Working with input demo
 A demo that handles keyboard, mouse, touch, and gamepad input using both polling and event-driven techniques.
 
-![Screenshot](screenshot.png "Screenshot")
+![Gamepad input running in Godot](screenshots/screenshot.png "Gamepad input running in Godot")
 
 Gamepad is the [Logitech F710](https://www.logitechg.com/en-us/products/gamepads/f710-wireless-gamepad.html)
+
+## Running on Android
+![Multi-touch input running on Android](screenshots/screenshot_2.jpg "Multi-touch input running on Android")
+
+![logcat logging](screenshots/android_logging.png "logcat logging")
 
 ## References
 * https://www.youtube.com/watch?v=7r7ZPmspDew&list=PLS9MbmO_ssyDk79j9ewONxV88fD5e_o5d&index=6
