@@ -6,3 +6,6 @@
 visible = false
 script = ExtResource( 1 )
 radius = 20.0
+
+[node name="Label" type="Label" parent="."]
+margin_top = -80.0
