@@ -36,4 +36,5 @@ anchor_bottom = 1.0
 margin_left = -160.0
 margin_top = -60.0
 text = "Clear inputs"
+
 [connection signal="pressed" from="ClearInputsButton" to="." method="_on_ClearInputsButton_pressed"]

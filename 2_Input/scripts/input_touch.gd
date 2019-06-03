@@ -46,6 +46,7 @@ func _drag(position: Vector2, index: int = 0) -> void:
 		touch_circle.move(position)
 
 func _get_touch_display(index: int = 0) -> Touch2D:
+	index = index % 10  # for devices that report high index #s
 	var touch_displays = get_node_or_null("TouchDisplays")
 	if touch_displays == null || index >= touch_displays.get_child_count():
 		push_warning("No touch display found for index #%d" % index)
