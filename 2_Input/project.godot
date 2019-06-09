@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Input Demo"
-run/main_scene="res://scenes/touch.tscn"
+run/main_scene="res://scenes/main_scene_select.tscn"
 config/icon="res://gfx/icon.png"
 
 [autoload]

@@ -1,5 +1,5 @@
 # Working with input demo
-A demo that handles keyboard, mouse, touch, and gamepad input using both polling and event-driven techniques.
+A demo that handles keyboard, mouse, touch, accelerometer, gyro, and gamepad input using both polling and event-driven techniques.
 
 ![Gamepad input running in Godot](screenshots/screenshot.png "Gamepad input running in Godot")
 
