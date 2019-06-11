@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "CanvasItem",
+"class": "Math",
+"language": "GDScript",
+"path": "res://scripts/math.gd"
+}, {
+"base": "Node2D",
+"class": "Meteor",
+"language": "GDScript",
+"path": "res://scripts/meteor.gd"
+}, {
+"base": "Node2D",
+"class": "Planet",
+"language": "GDScript",
+"path": "res://scripts/planet.gd"
+} ]
 _global_script_class_icons={
-
+"Math": "",
+"Meteor": "",
+"Planet": ""
 }
 
 [application]
