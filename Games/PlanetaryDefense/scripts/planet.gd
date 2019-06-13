@@ -27,7 +27,7 @@ func _draw() -> void:
 	draw_string(_font, Math.point_on_circle(shield_end_angle, angle_display_radius), str(shield_end_angle), Color.gray)
 	
 func _unhandled_input(event) -> void:
-	if not event is InputEventMouseMotion: return
+	if not (event is InputEventMouseMotion or event is InputEventMouseButton): return
 	var localMousePos = to_local(get_viewport().get_mouse_position())
 	shield_angle = Math.get_angle(localMousePos)
 	update()
