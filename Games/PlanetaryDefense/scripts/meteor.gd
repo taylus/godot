@@ -6,13 +6,14 @@ signal hit_planet
 signal hit_shield
 
 export var radius: float
+export var color: Color = Color(0.7, 0.5, 0.2)
 var orbit_radius: float setget set_orbit_radius
 var orbit_angle: float setget set_orbit_angle
 const BASE_FALL_SPEED: float = 30.0  # pixels/sec
 var planet: Planet
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, radius, Color.saddlebrown)
+	draw_circle(Vector2.ZERO, radius, color)
 
 func _physics_process(delta: float) -> void:
 	_fall(delta)
