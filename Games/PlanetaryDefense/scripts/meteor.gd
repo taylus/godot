@@ -6,8 +6,8 @@ signal hit_planet
 signal hit_shield
 
 export var radius: float
-var orbit_radius: float
-var orbit_angle: float
+var orbit_radius: float setget set_orbit_radius
+var orbit_angle: float setget set_orbit_angle
 const FALL_SPEED: float = 40.0	# pixels/sec
 var planet: Planet
 
@@ -45,3 +45,11 @@ func _hit_shield() -> bool:
 		
 func _hit_planet() -> bool:
 	return orbit_radius < planet.radius + self.radius
+	
+func set_orbit_radius(value: float) -> void:
+	orbit_radius = value
+	position = Math.point_on_circle(orbit_angle, orbit_radius, planet.position)
+	
+func set_orbit_angle(value: float) -> void:
+	orbit_angle = value
+	position = Math.point_on_circle(orbit_angle, orbit_radius, planet.position)

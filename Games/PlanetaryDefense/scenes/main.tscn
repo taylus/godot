@@ -12,3 +12,8 @@ position = Vector2( 512, 300 )
 
 [node name="MeteorManager" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="MeteorSpawnTimer" type="Timer" parent="MeteorManager"]
+wait_time = 2.0
+autostart = true
+[connection signal="timeout" from="MeteorManager/MeteorSpawnTimer" to="MeteorManager" method="_on_MeteorSpawnTimer_timeout"]
