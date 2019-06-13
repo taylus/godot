@@ -35,7 +35,9 @@ func _spawn_meteor() -> void:
 		add_child(meteorNode)
 	
 func _on_meteor_hit_planet(meteor: Meteor) -> void:
+	#print("Meteor hit planet")
 	meteor.queue_free()
 	
 func _on_meteor_hit_shield(meteor: Meteor) -> void:
+	#print("Meteor hit shield")
 	meteor.queue_free()

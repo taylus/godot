@@ -1,4 +1,3 @@
-tool
 extends Node2D
 
 class_name Meteor
@@ -19,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	_fall(delta)
 	
 func _fall(delta: float) -> void:
-	orbit_radius = orbit_radius - (FALL_SPEED * delta)
+	orbit_radius -= (FALL_SPEED * delta)
 	position = Math.point_on_circle(orbit_angle, orbit_radius, planet.position)
 	
 	if _hit_shield():
@@ -29,11 +28,20 @@ func _fall(delta: float) -> void:
 		emit_signal("hit_planet", self)
 		
 func _hit_shield() -> bool:
-	var min_angle = min(planet.get_shield_start_angle(), planet.get_shield_end_angle())
-	var max_angle = max(planet.get_shield_start_angle(), planet.get_shield_end_angle())
+	var fudge_factor = (radius * 0.005)
+	var shield_start_angle = planet.get_shield_start_angle_for_collision() - fudge_factor
+	var shield_end_angle = planet.get_shield_end_angle_for_collision() + fudge_factor
+	var meteor_angle = orbit_angle
+	
+	# adjust if the shield is spanning the point where the angles wrap around (2 PI -> 0)
+	if shield_start_angle > shield_end_angle:
+		shield_end_angle += 2 * PI
+		if meteor_angle >= 0 and meteor_angle <= PI:
+			meteor_angle += 2 * PI # adjust small meteor angles
+		
 	return orbit_radius < planet.shield_radius + self.radius \
-		and orbit_angle >= min_angle \
-		and orbit_angle <= max_angle
+		and meteor_angle >= shield_start_angle \
+		and meteor_angle <= shield_end_angle
 		
 func _hit_planet() -> bool:
 	return orbit_radius < planet.radius + self.radius
