@@ -10,6 +10,7 @@ func _ready() -> void:
 func _spawn_random_meteor() -> void:
 	var meteorNode: Meteor = meteorScene.instance()
 	meteorNode.planet = planetNode
+	meteorNode.radius = rand_range(4, 20)
 	meteorNode.orbit_angle = rand_range(0, 2 * PI)
 	meteorNode.orbit_radius = planetNode.radius * 4
 	meteorNode.connect("hit_planet", get_parent(), "_on_meteor_hit_planet")

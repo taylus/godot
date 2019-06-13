@@ -8,7 +8,7 @@ signal hit_shield
 export var radius: float
 var orbit_radius: float setget set_orbit_radius
 var orbit_angle: float setget set_orbit_angle
-const FALL_SPEED: float = 40.0	# pixels/sec
+const BASE_FALL_SPEED: float = 30.0  # pixels/sec
 var planet: Planet
 
 func _draw() -> void:
@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	_fall(delta)
 	
 func _fall(delta: float) -> void:
-	orbit_radius -= (FALL_SPEED * delta)
+	orbit_radius -= (_get_fall_speed() * delta)
 	position = Math.point_on_circle(orbit_angle, orbit_radius, planet.position)
 	
 	if _hit_shield():
@@ -26,6 +26,11 @@ func _fall(delta: float) -> void:
 		
 	if _hit_planet():
 		emit_signal("hit_planet", self)
+		
+# calculate fall speed in pixels/sec based on size
+func _get_fall_speed() -> float:
+	#if radius == 0: return float(0)
+	return BASE_FALL_SPEED + ((10 * BASE_FALL_SPEED) / radius)
 		
 func _hit_shield() -> bool:
 	var fudge_factor = (radius * 0.005)
