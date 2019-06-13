@@ -3,11 +3,16 @@ extends Node2D
 class_name Planet
 
 export var radius: float
+export var color: Color = Color.darkkhaki
+export var hit_color: Color = Color(0.7, 0.3, 0.25)
+var _current_color: Color = color setget set_current_color
 var shield_radius: float
 var shield_angle: float
 var _shield_radians: float = PI / 3.5
 var _shield_line_width: float = 4
 var _font: Font
+
+onready var _hit_flash_timer = get_node("HitFlashTimer")
 
 func _ready() -> void:
 	shield_radius = radius + 20
@@ -33,7 +38,7 @@ func _unhandled_input(event) -> void:
 	update()
 
 func _draw_planet() -> void:
-	_draw_circle(Vector2.ZERO, radius, Color.darkkhaki, true)
+	_draw_circle(Vector2.ZERO, radius, _current_color, true)
 	
 func _draw_shield() -> void:
 	_draw_arc(Vector2.ZERO, shield_radius, get_shield_start_angle(), get_shield_end_angle(), Color.lightblue, false, _shield_line_width)
@@ -73,3 +78,19 @@ func _draw_arc(center: Vector2, radius: float, angle_from: float, angle_to: floa
 		
 func _draw_circle(center: Vector2, radius: float, color: Color, filled: bool = false, width: float = 1) -> void:
 	_draw_arc(center, radius, 0, 2 * PI, color, filled, width)
+
+func flash(duration: float = 0.8) -> void:
+	self._current_color = hit_color
+	_hit_flash_timer.stop()
+	_hit_flash_timer.start(0.25)
+	yield(get_tree().create_timer(duration), "timeout")
+	_hit_flash_timer.stop()
+	self._current_color = color
+
+func _on_HitFlashTimer_timeout() -> void:
+	self._current_color = hit_color if _current_color != hit_color else color
+	update()
+
+func set_current_color(value: Color) -> void:
+	_current_color = value
+	update()

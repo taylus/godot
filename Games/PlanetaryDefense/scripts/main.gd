@@ -5,6 +5,7 @@ onready var planetNode: Node2D = get_node("Planet")
 func _ready() -> void:
 	get_tree().get_root().connect("size_changed", self, "_on_window_size_changed")
 	_center(planetNode)
+	planetNode.flash()
 
 func _center(node: Node2D, rect: Rect2 = get_viewport_rect()) -> void:
 	node.position = _center_of(rect)
@@ -18,9 +19,8 @@ func _center_of(rect: Rect2) -> Vector2:
 	               (rect.position.y + rect.end.y / 2))
 				
 func _on_meteor_hit_planet(meteor: Meteor) -> void:
-	#print("Meteor hit planet")
+	planetNode.flash()
 	meteor.queue_free()
 	
 func _on_meteor_hit_shield(meteor: Meteor) -> void:
-	#print("Meteor hit shield")
 	meteor.queue_free()
