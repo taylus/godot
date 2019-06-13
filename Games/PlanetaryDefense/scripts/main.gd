@@ -5,7 +5,6 @@ onready var planetNode: Node2D = get_node("Planet")
 func _ready() -> void:
 	get_tree().get_root().connect("size_changed", self, "_on_window_size_changed")
 	_center(planetNode)
-	planetNode.flash()
 
 func _center(node: Node2D, rect: Rect2 = get_viewport_rect()) -> void:
 	node.position = _center_of(rect)
