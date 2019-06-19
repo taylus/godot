@@ -1,25 +1,14 @@
-extends Node2D
-
-onready var planetNode: Node2D = get_node("Planet")
+extends Control
 
 func _ready() -> void:
-	get_tree().get_root().connect("size_changed", self, "_on_window_size_changed")
-	_center(planetNode)
+	var level_select_buttons = get_tree().get_nodes_in_group("level_buttons")
+	for button in level_select_buttons:
+		button.connect("pressed", self, "_on_level_button_pressed", [button])
 
-func _center(node: Node2D, rect: Rect2 = get_viewport_rect()) -> void:
-	node.position = _center_of(rect)
-
-func _on_window_size_changed() -> void:
-	print(get_viewport_rect())
-	planetNode.position = _center_of(get_viewport_rect())
+func _on_level_button_pressed(button: Button) -> void:
+	var levelToLoad = "res://scenes/levels/level_%s.tscn" % button.text
+	if _file_exists(levelToLoad): get_tree().change_scene(levelToLoad)
 	
-func _center_of(rect: Rect2) -> Vector2:
-	return Vector2((rect.position.x + rect.end.x / 2),
-	               (rect.position.y + rect.end.y / 2))
-				
-func _on_meteor_hit_planet(meteor: Meteor) -> void:
-	planetNode.flash()
-	meteor.queue_free()
-	
-func _on_meteor_hit_shield(meteor: Meteor) -> void:
-	meteor.queue_free()
+func _file_exists(pathname: String) -> bool:
+	var file = File.new()
+	return file.file_exists(pathname)
