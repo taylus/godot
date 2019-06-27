@@ -3,7 +3,7 @@ extends Node2D
 class_name Planet
 
 export var radius: float
-export var color: Color = Color.darkkhaki
+export var color: Color
 export var hit_color: Color = Color(0.7, 0.3, 0.25)
 var _current_color: Color = color setget set_current_color
 var shield_radius: float
@@ -15,6 +15,7 @@ var _font: Font
 onready var _hit_flash_timer = get_node("HitFlashTimer")
 
 func _ready() -> void:
+	_current_color = color
 	shield_radius = radius + 20
 	
 	# https://godotengine.org/qa/7307/getting-default-editor-font-for-draw_string
@@ -24,12 +25,7 @@ func _ready() -> void:
 func _draw() -> void:
 	_draw_planet()
 	_draw_shield()
-	
-	var angle_display_radius = shield_radius + 10
-	var shield_start_angle = get_shield_start_angle_for_collision()
-	var shield_end_angle = get_shield_end_angle_for_collision()
-	draw_string(_font, Math.point_on_circle(shield_start_angle, angle_display_radius), str(shield_start_angle), Color.gray)
-	draw_string(_font, Math.point_on_circle(shield_end_angle, angle_display_radius), str(shield_end_angle), Color.gray)
+	if OS.is_debug_build(): _draw_debug_info()
 	
 func _unhandled_input(event) -> void:
 	if not (event is InputEventMouseMotion or event is InputEventMouseButton): return
@@ -78,6 +74,13 @@ func _draw_arc(center: Vector2, radius: float, angle_from: float, angle_to: floa
 		
 func _draw_circle(center: Vector2, radius: float, color: Color, filled: bool = false, width: float = 1) -> void:
 	_draw_arc(center, radius, 0, 2 * PI, color, filled, width)
+	
+func _draw_debug_info() -> void:
+	var angle_display_radius = shield_radius + 10
+	var shield_start_angle = get_shield_start_angle_for_collision()
+	var shield_end_angle = get_shield_end_angle_for_collision()
+	draw_string(_font, Math.point_on_circle(shield_start_angle, angle_display_radius), str(shield_start_angle), Color.gray)
+	draw_string(_font, Math.point_on_circle(shield_end_angle, angle_display_radius), str(shield_end_angle), Color.gray)
 
 func flash(duration: float = 0.8) -> void:
 	self._current_color = hit_color

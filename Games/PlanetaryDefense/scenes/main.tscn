@@ -63,7 +63,6 @@ margin_left = 130.0
 margin_right = 250.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 120, 120 )
-disabled = true
 text = "2"
 
 [node name="Level3" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer" groups=[
