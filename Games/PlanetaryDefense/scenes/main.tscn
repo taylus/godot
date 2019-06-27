@@ -257,4 +257,3 @@ margin_bottom = 510.0
 rect_min_size = Vector2( 120, 120 )
 disabled = true
 text = "20"
-
