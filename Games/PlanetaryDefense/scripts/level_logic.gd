@@ -1,3 +1,5 @@
+# common game level logic to be attached to each level scene's top-level node
+
 extends Node2D
 
 onready var planetNode: Node2D = get_node("Planet")
